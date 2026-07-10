@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Results — SSC Election</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__brand">
+      <div class="seal">SSC</div>
+      <div class="site-header__titles">
+        <span class="eyebrow">Live Dashboard</span>
+        <h1 id="election-title">Supreme Student Council Election</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vote.html">Vote</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="dashboard-toolbar">
+    <span class="live-pill"><span class="live-pill__dot"></span> Live</span>
+    <span id="last-updated">Updated —</span>
+  </div>
+
+  <section class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-card__label">Total Votes Cast</div>
+      <div class="stat-card__value" id="stat-total-votes" data-value="0">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__label">Remaining Voters</div>
+      <div class="stat-card__value" id="stat-remaining" data-value="0">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__label">Turnout</div>
+      <div class="stat-card__value" id="stat-turnout">0%</div>
+      <div class="stat-card__bar-track"><div class="stat-card__bar-fill" id="turnout-bar"></div></div>
+    </div>
+  </section>
+
+  <hr class="stub-divider" />
+
+  <h2>Results by Position</h2>
+  <div class="results-grid" id="results-container"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Rankings update automatically as votes are cast. No refresh needed.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script>
+  document.getElementById("election-title").textContent = ELECTION_CONFIG.electionTitle;
+</script>
+</body>
+</html>

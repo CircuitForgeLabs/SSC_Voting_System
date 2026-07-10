@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cast Your Vote — SSC Election</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/vote.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__brand">
+      <div class="seal">SSC</div>
+      <div class="site-header__titles">
+        <span class="eyebrow">Official Ballot</span>
+        <h1 id="election-title">Supreme Student Council Election</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Step 1: student number lookup -->
+  <section id="section-lookup">
+    <div class="lookup-card">
+      <div class="seal">1</div>
+      <h2>Enter Your Student Number</h2>
+      <p>We'll verify that you're a registered voter and that you haven't voted yet.</p>
+      <form id="lookup-form">
+        <div class="field">
+          <label for="student-number">Student Number</label>
+          <input type="text" id="student-number" name="student-number" autocomplete="off" placeholder="e.g. 2023-00123" required />
+          <p class="field__hint">No password needed — just your official student number.</p>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block" style="margin-top:16px;">Continue</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Step 2: ballot -->
+  <section id="section-ballot" class="is-hidden">
+    <div class="ballot-header">
+      <span class="student-badge" id="student-badge"></span>
+      <h2>Your Ballot</h2>
+      <p>Select your candidate(s) for each position, then review and submit.</p>
+    </div>
+    <div id="ballot-container"></div>
+    <div class="ballot-actions">
+      <button type="button" id="submit-vote-btn" class="btn btn--primary">Review &amp; Submit Vote</button>
+    </div>
+  </section>
+
+  <!-- Step 3: thank you -->
+  <section id="section-thankyou" class="is-hidden">
+    <div class="thankyou-card">
+      <div class="seal">✓</div>
+      <h2>Thank you for voting.</h2>
+      <p>Your ballot has been recorded. This student number is now locked and cannot vote again.</p>
+      <a class="btn btn--ghost" href="dashboard.html">View Live Results</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Your vote is confidential. Results are tallied automatically and shown on the live dashboard.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/validation.js"></script>
+<script src="assets/js/vote.js"></script>
+<script>
+  document.getElementById("election-title").textContent = ELECTION_CONFIG.electionTitle;
+</script>
+</body>
+</html>

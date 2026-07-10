@@ -1,0 +1,212 @@
+/* =========================================================================
+   vote.css — lookup screen, ballot, and thank-you screen
+   ========================================================================= */
+
+.lookup-card {
+  max-width: 480px;
+  margin: 40px auto;
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.lookup-card .seal {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  font-size: 1.4rem;
+}
+
+.lookup-card h2 {
+  font-size: 1.5rem;
+}
+
+.lookup-card p {
+  color: var(--color-ink-muted);
+}
+
+.lookup-card form {
+  text-align: left;
+  margin-top: 24px;
+}
+
+.student-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  background: var(--color-navy);
+  color: var(--color-paper);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.ballot-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ballot-header h2 {
+  font-size: 1.7rem;
+}
+
+.position-block {
+  border: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+
+.position-block legend {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-navy);
+  margin-bottom: 18px;
+}
+
+.position-block__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--color-navy);
+}
+
+.position-block__limit {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+}
+
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.candidate-card {
+  position: relative;
+  background: var(--color-paper);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.candidate-card:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.candidate-card--selected {
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(22, 35, 63, 0.12);
+}
+
+.candidate-card__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.candidate-card__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+}
+
+.candidate-card__body h4 {
+  margin: 0 0 2px;
+  font-size: 1.02rem;
+}
+
+.candidate-card__party {
+  margin: 0;
+  color: var(--color-gold-dark);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.candidate-card__meta {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--color-ink-muted);
+}
+
+.candidate-card__check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-line);
+  background: var(--color-paper);
+}
+
+.candidate-card__input:checked ~ .candidate-card__check {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+}
+
+.candidate-card__input:checked ~ .candidate-card__check::after {
+  content: "✓";
+  color: var(--color-paper);
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ballot-actions {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-cream) 60%, transparent);
+  padding: 24px 0 8px;
+  text-align: center;
+}
+
+.ballot-actions .btn {
+  max-width: 320px;
+}
+
+/* Thank-you screen */
+.thankyou-card {
+  max-width: 460px;
+  margin: 60px auto;
+  text-align: center;
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+  padding: 48px 32px;
+  box-shadow: var(--shadow-card);
+}
+
+.thankyou-card .seal {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  font-size: 1.8rem;
+  background: var(--color-green-bg);
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.thankyou-card h2 {
+  font-size: 1.6rem;
+}
