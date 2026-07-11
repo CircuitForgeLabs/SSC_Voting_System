@@ -132,6 +132,13 @@ img {
   position: relative;
 }
 
+.seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .seal::before {
   content: "";
   position: absolute;
