@@ -12,7 +12,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <div class="site-header__brand">
-     <div class="seal"><img src="assets/images/logo.png" alt="School logo" /></div>
+      <div class="seal">SSC</div>
       <div class="site-header__titles">
         <span class="eyebrow">Official Ballot</span>
         <h1 id="election-title">Supreme Student Council Election</h1>
@@ -36,7 +36,11 @@
         <div class="field">
           <label for="student-number">Student Number</label>
           <input type="text" id="student-number" name="student-number" autocomplete="off" placeholder="e.g. 2023-00123" required />
-          <p class="field__hint">No password needed — just your official student number.</p>
+        </div>
+        <div class="field" style="margin-top:14px;">
+          <label for="passcode">Passcode</label>
+          <input type="text" id="passcode" name="passcode" autocomplete="off" placeholder="e.g. 7X9K2M" required />
+          <p class="field__hint">The unique passcode given to you for this election.</p>
         </div>
         <button type="submit" class="btn btn--primary btn--block" style="margin-top:16px;">Continue</button>
       </form>
@@ -69,7 +73,8 @@
 </main>
 
 <footer class="site-footer">
-  <p>Developed by Engr. Lee-Mher Binay-an, CCPE, CCTT</p>
+  <p>Your vote is confidential. Results are tallied automatically and shown on the live dashboard.</p>
+    <p>&copy; 2026 Engr. Lee-Mher S. Binay-an. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

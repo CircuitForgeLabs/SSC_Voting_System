@@ -6,6 +6,7 @@
 <title>Supreme Student Council Election</title>
 <meta name="description" content="Official student election portal — cast your vote and view live results." />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/carousel.css" />
 </head>
 <body>
 
@@ -25,8 +26,15 @@
 </header>
 
 <main>
+
+  <section class="carousel">
+  <h2 class="carousel__heading">Meet the Candidates</h2>
+  <div class="carousel__viewport" id="carousel-viewport"></div>
+  <div class="carousel__dots" id="carousel-dots"></div>
+</section>
+
   <section class="lookup-card" style="margin-top:20px;">
-   <div class="seal"><img src="assets/images/logo.png" alt="School logo" /></div>
+    <div class="seal"><img src="assets/images/logo.png" alt="School logo" /></div>
     <h2 id="election-title">Supreme Student Council Election</h2>
     <p>Cast your vote using your student number. One vote per student — no password required.</p>
     <a class="btn btn--primary btn--block" href="vote.html">Go to Ballot</a>
@@ -36,10 +44,11 @@
 </main>
 
 <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Developed by Engr. Lee-Mher Binay-an, CCPE, CCTT</p>
+  <p>&copy; <span id="year"></span> Student Supreme Student Council Election System</p>
 </footer>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/carousel.js"></script>
 <script>
   document.getElementById("school-name").textContent = ELECTION_CONFIG.schoolName;
   document.getElementById("election-title").textContent = ELECTION_CONFIG.electionTitle;

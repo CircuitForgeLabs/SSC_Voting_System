@@ -11,7 +11,6 @@
 
 const VoteApp = {
   student: null, // the verified student row
-  passcode: null, // the entered passcode, kept only for the final submit
   positions: [],
   candidates: [],
   selections: new Map(), // position_id -> Set<candidate_id>
@@ -22,7 +21,6 @@ const VoteApp = {
     this.els = {
       lookupForm: document.getElementById("lookup-form"),
       studentNumberInput: document.getElementById("student-number"),
-      passcodeInput: document.getElementById("passcode"),
       lookupSection: document.getElementById("section-lookup"),
       ballotSection: document.getElementById("section-ballot"),
       thankyouSection: document.getElementById("section-thankyou"),
@@ -38,14 +36,9 @@ const VoteApp = {
   async handleLookup(event) {
     event.preventDefault();
     const raw = this.els.studentNumberInput.value.trim();
-    const passcode = this.els.passcodeInput.value.trim();
 
     if (!Validation.isValidStudentNumberFormat(raw)) {
       Utils.showDialog("Please enter a valid student number.", "error");
-      return;
-    }
-    if (!passcode) {
-      Utils.showDialog("Please enter your passcode.", "error");
       return;
     }
 
@@ -62,14 +55,7 @@ const VoteApp = {
         return;
       }
 
-      const passcodeOk = await DataAPI.verifyPasscode(raw, passcode);
-      if (!passcodeOk) {
-        Utils.showDialog("Incorrect passcode. Please check and try again.", "error");
-        return;
-      }
-
       this.student = student;
-      this.passcode = passcode;
       await this.loadBallot();
     } catch (err) {
       console.error(err);
@@ -187,7 +173,7 @@ const VoteApp = {
 
     Utils.setLoading(true, "Submitting your vote...");
     try {
-      await DataAPI.castVote(this.student.student_number, this.passcode, candidateIds);
+      await DataAPI.castVote(this.student.student_number, candidateIds);
       this.els.ballotSection.classList.add("is-hidden");
       this.els.thankyouSection.classList.remove("is-hidden");
     } catch (err) {

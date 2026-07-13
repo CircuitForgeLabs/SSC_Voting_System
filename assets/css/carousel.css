@@ -1,0 +1,72 @@
+/* =========================================================================
+   carousel.css — slow, auto-rotating fade carousel for promotional
+   candidate photos on the home page.
+   ========================================================================= */
+
+.carousel {
+  max-width: 1080px;
+  margin: 24px auto;
+}
+
+.carousel__heading {
+  text-align: center;
+}
+
+.carousel__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: var(--color-line);
+}
+
+.carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  pointer-events: none;
+}
+
+.carousel__slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.carousel__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-line);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel__dot--active {
+  background: var(--color-gold);
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__slide {
+    transition: none;
+  }
+}

@@ -33,7 +33,12 @@ const DataAPI = {
     return data;
   },
 
-  /** Look up one student by student number. Returns null if not found. */
+  /**
+   * Looks up one student by student number, via the `students_lookup`
+   * view (exposes only student_number + has_voted — never the full
+   * students table) so the anon key can verify eligibility without being
+   * able to read anything else. Returns null if not found.
+   */
   async findStudent(studentNumber) {
     const { data, error } = await db
       .from("students_lookup")
@@ -44,25 +49,14 @@ const DataAPI = {
     return data;
   },
 
-  /** Verifies a student number + passcode pair. Returns true/false. */
-  async verifyPasscode(studentNumber, passcode) {
-    const { data, error } = await db.rpc("verify_passcode", {
-      p_student_number: studentNumber,
-      p_passcode: passcode,
-    });
-    if (error) throw error;
-    return data === true;
-  },
-
   /**
-   * Casts a ballot: verifies the passcode again, inserts one row per
-   * selected candidate into `votes`, and flips the student's has_voted
-   * flag — all inside a single atomic database function.
+   * Casts a ballot: inserts one row per selected candidate into `votes`
+   * and flips the student's has_voted flag, via a single database
+   * function so the operation is atomic (see sql/02_functions.sql).
    */
-  async castVote(studentNumber, passcode, candidateIds) {
+  async castVote(studentNumber, candidateIds) {
     const { data, error } = await db.rpc("cast_vote", {
       p_student_number: studentNumber,
-      p_passcode: passcode,
       p_candidate_ids: candidateIds,
     });
     if (error) throw error;
