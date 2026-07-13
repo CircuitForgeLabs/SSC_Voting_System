@@ -6,12 +6,10 @@
  * `CAROUSEL_IMAGES` list in index.html — no other changes needed.
  * -----------------------------------------------------------------------
  */
-
 function initCarousel(images, intervalMs = 4500) {
   const viewport = document.getElementById("carousel-viewport");
   const dotsContainer = document.getElementById("carousel-dots");
   if (!viewport || !images.length) return;
-
   viewport.innerHTML = images
     .map(
       (src, i) => `
@@ -21,7 +19,6 @@ function initCarousel(images, intervalMs = 4500) {
     `
     )
     .join("");
-
   dotsContainer.innerHTML = images
     .map(
       (_, i) => `
@@ -29,12 +26,10 @@ function initCarousel(images, intervalMs = 4500) {
     `
     )
     .join("");
-
   const slides = viewport.querySelectorAll(".carousel__slide");
   const dots = dotsContainer.querySelectorAll(".carousel__dot");
   let current = 0;
   let timer = null;
-
   function show(index) {
     slides[current].classList.remove("carousel__slide--active");
     dots[current].classList.remove("carousel__dot--active");
@@ -42,26 +37,21 @@ function initCarousel(images, intervalMs = 4500) {
     slides[current].classList.add("carousel__slide--active");
     dots[current].classList.add("carousel__dot--active");
   }
-
   function next() {
     show(current + 1);
   }
-
   function restartTimer() {
     if (timer) clearInterval(timer);
     timer = setInterval(next, intervalMs);
   }
-
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
       show(Number(dot.dataset.index));
       restartTimer();
     });
   });
-
   restartTimer();
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   // Add/remove image paths here as you upload more candidate photos.
   const CAROUSEL_IMAGES = [
@@ -75,6 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/images/promo8.jpg",
     "assets/images/promo9.jpg",
     "assets/images/promo10.jpg",
+    "assets/images/promo11.jpg",
+    "assets/images/promo12.jpg",
+    "assets/images/promo13.jpg",
+    "assets/images/promo14.jpg",
+    "assets/images/promo15.jpg",
+    "assets/images/promo16.jpg",
+    "assets/images/promo17.jpg",
   ];
   initCarousel(CAROUSEL_IMAGES, 4500);
 });
