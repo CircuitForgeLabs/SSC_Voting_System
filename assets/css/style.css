@@ -47,8 +47,7 @@ html {
 
 body {
   margin: 0;
- background: #d29e16;
- 
+  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 16px;
