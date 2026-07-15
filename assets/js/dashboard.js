@@ -31,7 +31,29 @@ const Dashboard = {
     DataAPI.subscribeToTable("votes", () => this.loadAll());
     DataAPI.subscribeToTable("students", () => this.loadAll());
     DataAPI.subscribeToTable("candidates", () => this.loadAll());
+
+    // Fallback: re-check for new votes every 10 seconds no matter what,
+    // so the dashboard stays fresh even if realtime isn't firing.
+    setInterval(() => this.loadAll(), 10000);
   },
+  
+/*
+  init() {
+    this.els = {
+      totalVotesCast: document.getElementById("stat-total-votes"),
+      remainingVoters: document.getElementById("stat-remaining"),
+      turnout: document.getElementById("stat-turnout"),
+      turnoutBar: document.getElementById("turnout-bar"),
+      resultsContainer: document.getElementById("results-container"),
+      lastUpdated: document.getElementById("last-updated"),
+    };
+
+    this.loadAll();
+    DataAPI.subscribeToTable("votes", () => this.loadAll());
+    DataAPI.subscribeToTable("students", () => this.loadAll());
+    DataAPI.subscribeToTable("candidates", () => this.loadAll());
+  },
+  */
 
   async loadAll() {
     try {
