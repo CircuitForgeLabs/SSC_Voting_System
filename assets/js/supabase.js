@@ -93,11 +93,23 @@ const DataAPI = {
    * position_id only — never student_number) so ballots stay secret
    * even though results are public in realtime.
    */
+  /*
   async getAllVotes() {
     const { data, error } = await db.from("votes_public").select("candidate_id, position_id");
     if (error) throw error;
     return data;
   },
+  */
+
+  async getAllVotes() {
+  const { data, error } = await db
+    .from("votes_public")
+    .select("candidate_id, position_id")
+    .range(0, 9999); // explicitly raise the limit well above expected vote volume
+  if (error) throw error;
+  return data;
+},
+  
 
   /** Subscribes to realtime changes on a table. Returns the channel so
    *  the caller can unsubscribe later if needed. */
